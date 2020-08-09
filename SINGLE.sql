@@ -61,7 +61,7 @@ EventYear INT CHECK (len(EventYear) = 4),
 EventMonth NVARCHAR(3) CHECK (EventMonth IN ('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')),
 EventDay INT CHECK (EventDay >=1 AND EventDay <=31),
 DateBooked DATE NOT NULL,
-Fee MONEY CHECK (Fee > 0) NOT NULL,
+Payment MONEY CHECK (Payment > 0) NOT NULL,
 PRIMARY KEY(ClientID,TourName,EventYear,EventMonth,EventDay),
 FOREIGN KEY(ClientID) REFERENCES Client,
 FOREIGN KEY(TourName,EventYear,EventMonth,EventDay) REFERENCES Event);
@@ -70,7 +70,36 @@ FOREIGN KEY(TourName,EventYear,EventMonth,EventDay) REFERENCES Event);
 
 --- Task 3 ---
 
+INSERT INTO Tour (TourName, Description) VALUES
+    ('North','Tour of wineries and outlets of the Bedigo and Castlemaine region'),
+    ('South','Tour of wineries and outlets of Mornington Penisula'),
+    ('West','Tour of wineries and outlets of the Geelong and Otways region');
+	
 
+INSERT INTO Client (ClientID, Surname, GivenName, Gender) VALUES
+    (1,'Price','Taylor','M'),
+    (2,'Gamble','Ellyse','F'),
+    (3,'Tan','Tilly','F'),
+	(4,'Malikkhil','Kanishka','M');
+	
+INSERT INTO Event (TourName,EventMonth,EventDay,EventYear,Fee) VALUES
+    ('North','Jan',9,2016,200),
+    ('North','Feb',13,2016,225),
+    ('South','Jan',9,2016,200),
+    ('South','Jan',16,2016,200),
+    ('West','Jan',29,2016,225);
+	
+INSERT INTO Booking (ClientID,TourName,EventMonth,EventDay,EventYear,Payment,DateBooked) VALUES
+    (1,'North','Jan',9,2016,200,'2015-12-10'),
+    (2,'North','Jan',9,2016,200,'2015-12-16'),
+    (1,'North','Feb',13,2016,225,'2016-01-08'),
+    (2,'North','Feb',13,2016,125,'2016-01-14'),
+    (3,'North','Feb',13,2016,225,'2016-02-03'),
+    (1,'South','Jan',9,2016,200,'2015-12-10'),
+    (2,'South','Jan',16,2016,200,'2015-12-18'),
+    (3,'South','Jan',16,2016,200,'2016-01-09'),
+    (2,'West','Jan',29,2016,225,'2015-12-17'),
+    (3,'West','Jan',29,2016,200,'2015-12-18');
 
 --- Task 4 ---
 
