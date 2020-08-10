@@ -103,8 +103,31 @@ INSERT INTO Booking (ClientID,TourName,EventMonth,EventDay,EventYear,Payment,Dat
 
 --- Task 4 ---
 
+--- Query 1 ------
 
+SELECT C.GivenName, C.Surname, T.TourName, T.DESCRIPTION, E.EventYear, E.EventMonth,E.EventDay,E.Fee, B.DateBooked, B.Payment
+FROM Booking B 
 
+INNER JOIN Client C
+ON B.ClientID = C.ClientID
+
+INNER JOIN Event E 
+ON B.TourName = E.TourName AND B.EventYear = E.EventYear AND B.EventMonth = E.EventMonth AND B.EventDay = E.EventDay
+
+INNER JOIN Tour T 
+ON E.TourName = T.TourName;
+
+--- Query 2 ------
+
+SELECT B.EventMonth, B.TourName, COUNT(*) AS 'Num Bookings'
+FROM Booking B 
+GROUP BY B.EventMonth, B.TourName;
+
+--- Query 3 ------
+
+SELECT *
+FROM Booking
+WHERE Payment > (SELECT AVG(Payment) FROM Booking);
 
 --- Task 5 ---
 
