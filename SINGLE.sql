@@ -130,6 +130,22 @@ SELECT *
 FROM Booking
 WHERE Payment > (SELECT AVG(Payment) FROM Booking);
 
+--- OR if we want to display some other fields as well
+
+SELECT C.GivenName, C.Surname, T.TourName, T.DESCRIPTION, E.EventYear, E.EventMonth,E.EventDay,E.Fee, B.DateBooked, B.Payment
+FROM Booking B 
+
+INNER JOIN Client C
+ON B.ClientID = C.ClientID
+
+INNER JOIN Event E 
+ON B.TourName = E.TourName AND B.EventYear = E.EventYear AND B.EventMonth = E.EventMonth AND B.EventDay = E.EventDay
+
+INNER JOIN Tour T 
+ON E.TourName = T.TourName
+
+WHERE B.Payment > (SELECT AVG(B.Payment) FROM Booking B);
+
 --- Task 5 ---
 
 CREATE VIEW TASK5 AS
