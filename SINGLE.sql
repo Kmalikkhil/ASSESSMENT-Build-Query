@@ -101,6 +101,7 @@ INSERT INTO Booking (ClientID,TourName,EventMonth,EventDay,EventYear,Payment,Dat
     (2,'West','Jan',29,2016,225,'2015-12-17'),
     (3,'West','Jan',29,2016,200,'2015-12-18');
 
+
 --- Task 4 ---
 
 --- Query 1 ------
@@ -149,3 +150,52 @@ ON E.TourName = T.TourName;
 
 --- Task 6 ---
 
+---**********Testing Query 1 From Task 4*******----
+
+--- Return same 10 rows of data as per the orginal query task 4 - Query 1
+SELECT *
+FROM Booking;
+
+
+-- Returns Count of rows as 10 - same number of rows in the task 4 - Query 1
+SELECT COUNT(*)
+FROM Booking;
+
+---- Can confirm the query result is correct which is showing 10 rows of data----
+
+
+---********Testing Query 2 From Task 4******----
+
+--- Both these test qureies provide 10 results (Rows of data) ---
+SELECT * 
+FROM Booking;
+
+SELECT COUNT(*)
+FROM Booking;
+
+--- The result from the query is ---
+
+Feb	North	3
+Jan	North	2
+Jan	South	3
+Jan	West	2
+
+Total = 3+2+3+2 = 10
+
+--- The output of the queries is 10 or 10 rows of data
+
+---********Testing Query 3 From Task 4***********----
+
+--- The test queries below return Count 3 Rows of data with is same as the original query results at Task 4 -Query 3 ---
+SELECT COUNT(Payment)
+FROM Booking
+WHERE Payment > (SELECT AVG(Payment) FROM Booking);
+
+--- calculated the average as 200 from all the data and the following test query resutl is the same as Task 4 -Query 3---
+SELECT *
+FROM Booking
+WHERE Payment > 200;
+
+
+
+-----------------------------END-----------------------------------------------
